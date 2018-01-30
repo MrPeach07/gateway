@@ -1,0 +1,29 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/gateway?verifyServerCertificate=false&useSSL=true&useUnicode=true&characterEncoding=utf8
+ mail:
+    host: smtp.163.com
+    password: lzy584621300
+    username: lizhiyu_9709@163.com
+    properties:
+     mail:
+      smtp:
+       auth:
+       starttls:
+                 enable: true
+                 required: true
+
+
+mybatis:
+      type-aliases-package: cn.edu.swpu.cins.gateway.entity
+      mapper-locations: classpath:mapper/*.xml
+      configuration:
+        cache-enabled: true
+        use-column-label: true
+        map-underscore-to-camel-case: true
+

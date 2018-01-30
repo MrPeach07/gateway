@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.swpu.cins.gateway.dao.MatchDao">
+    <insert id="saveTeam" parameterType="cn.edu.swpu.cins.gateway.entity.persistence.TeamInfo" useGeneratedKeys="true"
+            keyProperty="id">
+            INSERT INTO
+            TeamInfo
+            (teamName)
+            VALUES (#{teamName})
+    </insert>
+
+    <select id="selectAll" resultType="cn.edu.swpu.cins.gateway.entity.persistence.Ranking">
+        SELECT
+        teamId,
+        score,
+        (SELECT t.teamName FROM TeamInfo AS t WHERE t.id = r.teamId LIMIT 1) AS teamName
+        FROM Ranking AS r
+    </select>
+
+</mapper>
+

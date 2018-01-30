@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.swpu.cins.gateway.dao.UserDao">
+
+    <insert id="addUser" parameterType="cn.edu.swpu.cins.gateway.entity.persistence.UserInfo">
+        INSERT INTO
+        UserInfo
+        (username,pwd,email)
+        VALUE
+        (#{username},#{pwd},#{email})
+    </insert>
+
+    <update id="updateUser">
+        UPDATE UserInfo
+        <if test="flag==0">
+        SET enable = 1
+        </if>
+        <if test="flag!=0">
+            SET teamId=#{flag}
+        </if>
+        WHERE email=#{email}
+    </update>
+
+    <select id="getUser" parameterType="String" resultType="cn.edu.swpu.cins.gateway.entity.persistence.UserInfo">
+        SELECT
+        teamId,username,pwd,email,enable,studentId
+        FROM UserInfo
+        WHERE email=#{email}
+    </select>
+
+</mapper>
+
